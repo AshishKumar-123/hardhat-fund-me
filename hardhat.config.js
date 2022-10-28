@@ -1,6 +1,10 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 require("hardhat-deploy");
+require("hardhat-gas-reporter");
+require("@nomiclabs/hardhat-etherscan");
+require("solidity-coverage");
+require("@nomiclabs/hardhat-waffle");
 
 const GOREILLY_RPC_URL = process.env.GOREILLY_RPC_URL || "https://eth-goreilly";
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "0xffdfd";  
@@ -47,5 +51,8 @@ module.exports = {
       default:0,
       1:0
     }
+  },
+  mocha:{
+    timeout:500000,
   }
 };
