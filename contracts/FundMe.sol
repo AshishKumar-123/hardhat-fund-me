@@ -24,14 +24,15 @@ contract FundMe {
     uint256 public constant MINIMUM_USD = 50 * 10 ** 18;
     AggregatorV3Interface public priceFeed;
     
-    modifier onlyOwner {
-        if (msg.sender != i_owner) revert FundMe__NotOwner();
-        _;
-    }
     
     constructor(address priceFeedAddress) {
         i_owner = msg.sender;
         priceFeed = AggregatorV3Interface(priceFeedAddress);
+    }
+
+    modifier onlyOwner {
+        if (msg.sender != i_owner) revert FundMe__NotOwner();
+        _;
     }
 
     function fund() public payable {

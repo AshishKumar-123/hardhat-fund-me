@@ -42,9 +42,11 @@ module.exports = {
     }
   },
   gasReporter:{
-    enabled:false,
+    enabled:true,
     currency:"USD",
     coinmarketcap:COINMARKETCAP_API_KEY,
+    outputFile:'gas-report.txt',
+    noColors:true,
   },
   namedAccounts:{
     deployer:{
