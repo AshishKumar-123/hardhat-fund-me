@@ -1,5 +1,6 @@
 {
   "name": "hardhat-fund-me-fcc",
+  "author": "Ashish Kumar",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -27,5 +28,13 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3"
+  },
+  "scripts":{
+    "test":"yarn hardhat test",
+    "test:staging": "yarn hardhat test --network goreilly",
+    "test:unit": "yarn hardhat test",
+    "lint":"yarn solhint 'contracts/*.sol'",
+    "lint:fix":"yarn solhint 'contracts/*.sol' --fix",
+    "coverage":"yarn hardhat coverage"
   }
 }
