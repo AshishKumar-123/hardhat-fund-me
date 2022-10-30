@@ -17,7 +17,7 @@ describe("FundMe", async function () {
 
     describe("constructor", async function() {
         it("Sets the aggregator address correctly", async function() {
-            const response = await fundMe.s_priceFeed();
+            const response = await fundMe.getPriceFeed();
             assert.equal(response, mockV3Aggregator.address);
         })
     })
@@ -29,13 +29,13 @@ describe("FundMe", async function () {
 
         it("Update the amount funded data structure", async function() {
             await fundMe.fund({value:sendValue});
-            const response = await fundMe.s_addressToAmountFunded(deployer);
+            const response = await fundMe.getAddressToAmountFunded(deployer);
             assert.equal(response.toString(), sendValue.toString());
         })
 
         it("Adds s_funders to s_funders list", async function() {
             await fundMe.fund({value:sendValue});
-            const funder = await fundMe.s_funders(0);
+            const funder = await fundMe.getFunders(0);
             assert.equal(funder,deployer);
         })
     })
@@ -82,11 +82,11 @@ describe("FundMe", async function () {
             assert.equal(endingFundMeBalance, 0);
             assert.equal(startingFundMeBalance.add(startingDeployerBalance).toString(), endingDeployerBalance.add(gasCost).toString());
 
-            await expect(fundMe.s_funders(0)).to.be.reverted
+            await expect(fundMe.getFunders(0)).to.be.reverted
 
-            // Checking if the s_addressToAmountFunded is correctly rested to zero value after the withdraw is completed.
+            // Checking if the getAddressToAmountFunded is correctly rested to zero value after the withdraw is completed.
             for (i = 1; i < 6; i++) {
-                assert.equal(await fundMe.s_addressToAmountFunded(accounts[i].address), 0);
+                assert.equal(await fundMe.getAddressToAmountFunded(accounts[i].address), 0);
             }
         })
 
@@ -117,11 +117,11 @@ describe("FundMe", async function () {
             assert.equal(endingFundMeBalance, 0);
             assert.equal(startingFundMeBalance.add(startingDeployerBalance).toString(), endingDeployerBalance.add(gasCost).toString());
 
-            await expect(fundMe.s_funders(0)).to.be.reverted
+            await expect(fundMe.getFunders(0)).to.be.reverted
 
-            // Checking if the s_addressToAmountFunded is correctly rested to zero value after the withdraw is completed.
+            // Checking if the getAddressToAmountFunded is correctly rested to zero value after the withdraw is completed.
             for (i = 1; i < 6; i++) {
-                assert.equal(await fundMe.s_addressToAmountFunded(accounts[i].address), 0);
+                assert.equal(await fundMe.getAddressToAmountFunded(accounts[i].address), 0);
             }
         })
 
