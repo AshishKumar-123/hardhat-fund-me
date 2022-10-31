@@ -14,6 +14,6 @@ const verify = async (contractAddress, args) => {
       console.log(error)
     }
   }
-}
+};
 
 module.exports = { verify }

@@ -1,13 +1,15 @@
-const {getNamedAccounts, ethers} = require("hardhat")
+const { getNamedAccounts, ethers } = require("hardhat")
 
 async function main() {
-    const {deployer} = await getNamedAccounts();
-    const fundMe = await ethers.getContract("FundMe", deployer);
-    console.log("Funding...");
+  const { deployer } = await getNamedAccounts()
+  const fundMe = await ethers.getContract("FundMe", deployer)
+  console.log("Funding...")
 
-    const transactionResponse = await fundMe.withdraw();
-    transactionResponse.wait(1);
-    console.log("Got it back !!!");
+  const transactionResponse = await fundMe.withdraw()
+  transactionResponse.wait(1)
+  console.log("Got it back !!!")
 }
 
-main().then(() => process.exit(0)).catch((error) => console.log(error))
+main()
+  .then(() => process.exit(0))
+  .catch(error => console.log(error))
